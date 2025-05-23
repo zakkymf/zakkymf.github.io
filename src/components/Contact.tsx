@@ -1,3 +1,5 @@
+import "../App.css";
+
 function Contact() {
   return (
     <section
@@ -16,7 +18,7 @@ function Contact() {
               type="text"
               id="name"
               placeholder="Your Name"
-              className="w-full px-4 py-2 rounded bg-[#1a1a2e] border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 rounded card-background border border-gray-600 focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -29,7 +31,7 @@ function Contact() {
               type="email"
               id="email"
               placeholder="you@example.com"
-              className="w-full px-4 py-2 rounded bg-[#1a1a2e] border border-gray-600 focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 rounded card-background border border-gray-600 focus:outline-none focus:border-blue-500"
               required
             />
           </div>
@@ -42,7 +44,7 @@ function Contact() {
               id="message"
               rows={5}
               placeholder="Your message"
-              className="w-full px-4 py-2 rounded bg-[#1a1a2e] border border-gray-600 focus:outline-none focus:border-blue-500 resize-none"
+              className="w-full px-4 py-2 rounded card-background border border-gray-600 focus:outline-none focus:border-blue-500 resize-none"
               required
             />
           </div>
