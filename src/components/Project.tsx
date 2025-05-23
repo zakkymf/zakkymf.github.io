@@ -1,18 +1,53 @@
+import { motion } from "framer-motion";
 import "../App.css";
 import { projects } from "../constants/project";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.35,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
 
 function Project() {
   return (
     <div className="flex flex-col">
-      <h2 className="text-3xl font-bold text-white mb-12 text-center">
+      <motion.h2
+        className="text-3xl font-bold text-white mb-12 text-center"
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         Project
-      </h2>
+      </motion.h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         {projects.map((project) => (
-          <div
+          <motion.div
             key={project.id}
-            className="backdrop-blur-sm card-background border border-white/10 rounded-2xl p-4 shadow-lg transition-transform hover:scale-[1.02] duration-300"
+            className="backdrop-blur-sm card-background border border-white/10 rounded-2xl p-4 shadow-lg hover:scale-[1.02] transition-transform duration-300"
+            variants={cardVariants}
           >
             <img
               src={project.image}
@@ -32,9 +67,9 @@ function Project() {
                 </p>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

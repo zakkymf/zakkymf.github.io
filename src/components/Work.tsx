@@ -1,27 +1,62 @@
+import { motion } from "framer-motion";
 import "../App.css";
 import { works } from "../constants/work";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.85,
+      ease: "easeOut",
+    },
+  },
+};
 
 function WorkExperience() {
   return (
     <div>
-      <h2 className="text-3xl font-bold text-white mb-12 text-center">
+      <motion.h2
+        className="text-3xl font-bold text-white mb-12 text-center"
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         Work Experience
-      </h2>
+      </motion.h2>
 
-      <div className="relative max-w-6xl mx-auto flex flex-col gap-16 px-4">
+      <motion.div
+        className="relative max-w-6xl mx-auto flex flex-col gap-16 px-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <div className="absolute left-1/2 top-0 bottom-0 w-[4px] bg-white/30 -translate-x-1/2 rounded" />
 
         {works.map((exp, index) => {
           const isLeft = index % 2 === 0;
 
           return (
-            <div
+            <motion.div
               key={exp.id}
               className={`relative w-full flex ${
                 isLeft
                   ? "justify-start pr-4 sm:pr-20"
                   : "justify-end pl-4 sm:pl-20"
               }`}
+              variants={cardVariants}
             >
               <span className="absolute left-1/2 -translate-x-1/2 top-0 sm:top-1/2 sm:-translate-y-1/2 w-5 h-5 rounded-full bg-white border-[6px] border-black z-10" />
 
@@ -39,10 +74,10 @@ function WorkExperience() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 }
