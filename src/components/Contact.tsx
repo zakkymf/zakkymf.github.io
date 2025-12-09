@@ -5,7 +5,7 @@ function Contact() {
   return (
     <motion.section
       id="contact"
-      className="background-color py-16 px-4 sm:px-12 text-white"
+      className="py-16 px-4 sm:px-12 text-white"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

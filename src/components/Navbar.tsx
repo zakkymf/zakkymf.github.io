@@ -10,7 +10,7 @@ function Navbar() {
   const toggleMenu = () => setIsOpen((open) => !open);
 
   return (
-    <div className="sticky top-0 z-50 background-color h-16 border-b border-white/10 w-full">
+    <div className="sticky top-0 z-50 background-color border-b border-white/10 w-full overflow-hidden">
       <div className="flex items-center justify-between px-4 sm:px-12 h-16 w-full">
         <h1 className="text-sm font-bold text-white whitespace-nowrap">
           Zakky Muhammad Fajar
