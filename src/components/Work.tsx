@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import "../App.css";
 import { works } from "../constants/work";
 
@@ -18,7 +18,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.85,
-      ease: "easeOut",
+      ease: easeOut,
     },
   },
 };
@@ -30,7 +30,7 @@ function WorkExperience() {
         className="text-3xl font-bold text-white mb-12 text-center"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: easeOut }}
         viewport={{ once: true }}
       >
         Work Experience
