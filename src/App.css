@@ -383,7 +383,7 @@ nav a.text-blue-500::after {
 }
 
 /* Timeline Dot Glow */
-.absolute.left-1\\/2.w-5 {
+.absolute.left-1\/2.w-5 {
     background: linear-gradient(135deg, #6366f1, #a855f7);
     box-shadow:
         0 0 20px rgba(168, 85, 247, 0.6),
@@ -395,7 +395,7 @@ nav a.text-blue-500::after {
     position: relative;
 }
 
-.absolute.left-1\\/2.w-5::before {
+.absolute.left-1\/2.w-5::before {
     content: "";
     position: absolute;
     inset: -3px;
