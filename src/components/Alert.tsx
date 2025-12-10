@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence, spring } from "framer-motion";
 import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from "lucide-react";
-import { useEffect } from "react";
 
 type AlertProps = {
   type: "success" | "error" | "warning" | "info";
@@ -37,10 +37,10 @@ const Alert = ({
   }, [show, autoClose, onClose]);
 
   const icons = {
-    success: <CheckCircle className="w-5 h-5" />,
-    error: <AlertCircle className="w-5 h-5" />,
-    warning: <AlertTriangle className="w-5 h-5" />,
-    info: <Info className="w-5 h-5" />,
+    success: <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" />,
+    error: <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6" />,
+    warning: <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />,
+    info: <Info className="w-5 h-5 sm:w-6 sm:h-6" />,
   };
 
   const colors = {
@@ -70,13 +70,14 @@ const Alert = ({
     },
   };
 
-  const positions = {
-    top: { top: "1rem", left: "50%", transform: "translateX(-50%)" },
-    bottom: { bottom: "1rem", left: "50%", transform: "translateX(-50%)" },
-    "top-right": { top: "1rem", right: "1rem" },
-    "top-left": { top: "1rem", left: "1rem" },
-    "bottom-right": { bottom: "1rem", right: "1rem" },
-    "bottom-left": { bottom: "1rem", left: "1rem" },
+  const positionClasses = {
+    top: "top-4 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2",
+    bottom:
+      "bottom-4 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2",
+    "top-right": "top-4 left-4 right-4 sm:left-auto sm:right-4",
+    "top-left": "top-4 left-4 right-4 sm:right-auto",
+    "bottom-right": "bottom-4 left-4 right-4 sm:left-auto sm:right-4",
+    "bottom-left": "bottom-4 left-4 right-4 sm:right-auto",
   };
 
   const slideVariants = {
@@ -104,25 +105,22 @@ const Alert = ({
     <AnimatePresence>
       {show && (
         <motion.div
-          className="fixed z-50 max-w-md w-full"
-          style={{
-            ...positions[position],
-            pointerEvents: "auto",
-          }}
+          className={`fixed z-50 w-auto max-w-full sm:max-w-md ${positionClasses[position]}`}
+          style={{ pointerEvents: "auto" }}
           variants={slideVariants}
           initial="initial"
           animate="animate"
           exit="exit"
         >
           <div
-            className="backdrop-blur-xl rounded-xl p-4 shadow-2xl border"
+            className="backdrop-blur-xl rounded-xl p-3 sm:p-4 shadow-2xl border mx-auto"
             style={{
               background: currentColor.bg,
               borderColor: currentColor.border,
               boxShadow: `0 8px 32px ${currentColor.glow}, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
             }}
           >
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-2 sm:gap-3">
               <div
                 className="flex-shrink-0 mt-0.5"
                 style={{ color: currentColor.icon }}
@@ -132,23 +130,27 @@ const Alert = ({
 
               <div className="flex-1 min-w-0">
                 {title && (
-                  <h4 className="text-white font-semibold mb-1">{title}</h4>
+                  <h4 className="text-white font-semibold mb-1 text-sm sm:text-base leading-tight">
+                    {title}
+                  </h4>
                 )}
-                <p className="text-sm text-white/80">{message}</p>
+                <p className="text-xs sm:text-sm text-white/80 break-words leading-relaxed">
+                  {message}
+                </p>
               </div>
 
               <button
                 onClick={onClose}
-                className="flex-shrink-0 text-white/60 hover:text-white transition-colors duration-200 p-1 hover:bg-white/10 rounded-lg"
+                className="flex-shrink-0 text-white/60 hover:text-white transition-colors duration-200 p-1 hover:bg-white/10 rounded-lg touch-manipulation active:scale-95"
                 aria-label="Close alert"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 
             {autoClose && (
               <motion.div
-                className="absolute bottom-0 left-0 h-1 rounded-b-xl"
+                className="absolute bottom-0 left-0 h-0.5 sm:h-1 rounded-b-xl"
                 style={{
                   backgroundColor: currentColor.icon,
                   boxShadow: `0 0 10px ${currentColor.glow}`,
