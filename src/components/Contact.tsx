@@ -1,7 +1,19 @@
 import { motion } from "framer-motion";
 import "../App.css";
 
-function Contact() {
+interface ContactProps {
+  data: {
+    name: string;
+    email: string;
+    message: string;
+  };
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  onSubmit: () => void;
+}
+
+function Contact({ data, onChange, onSubmit }: ContactProps) {
   return (
     <motion.section
       id="contact"
@@ -35,9 +47,12 @@ function Contact() {
             <input
               type="text"
               id="name"
+              name="name"
               placeholder="Your Name"
               className="w-full px-4 py-2 rounded card-background border border-gray-600 focus:outline-none focus:border-blue-500"
               required
+              value={data.name}
+              onChange={(e) => onChange(e)}
             />
           </motion.div>
 
@@ -53,9 +68,12 @@ function Contact() {
             <input
               type="email"
               id="email"
+              name="email"
               placeholder="you@example.com"
               className="w-full px-4 py-2 rounded card-background border border-gray-600 focus:outline-none focus:border-blue-500"
               required
+              value={data.email}
+              onChange={(e) => onChange(e)}
             />
           </motion.div>
 
@@ -71,19 +89,23 @@ function Contact() {
             <textarea
               id="message"
               rows={5}
+              name="message"
               placeholder="Your message"
               className="w-full px-4 py-2 rounded card-background border border-gray-600 focus:outline-none focus:border-blue-500 resize-none"
               required
+              value={data.message}
+              onChange={(e) => onChange(e)}
             />
           </motion.div>
 
           <motion.button
-            type="submit"
+            type="button"
             className="bg-blue-600 hover:bg-blue-700 transition-colors duration-200 px-6 py-3 rounded font-semibold w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
+            onClick={onSubmit}
           >
             Send Message
           </motion.button>

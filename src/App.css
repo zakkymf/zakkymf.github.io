@@ -366,15 +366,15 @@ nav a.text-blue-500::after {
     width: 100%;
 }
 
-/* Project Card Image Enhancement */
-.card-background img {
+/* Project Card Image Enhancement - Only for Project Section */
+section#project .card-background img {
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 12px;
     filter: brightness(0.85) saturate(1.1) contrast(1.05);
     position: relative;
 }
 
-.card-background:hover img {
+section#project .card-background:hover img {
     transform: scale(1.1) translateY(-8px);
     filter: brightness(1.05) saturate(1.3) contrast(1.1);
     box-shadow:
@@ -383,8 +383,8 @@ nav a.text-blue-500::after {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Image container glow effect */
-.card-background:has(img)::before {
+/* Image container glow effect - Only for Project Section */
+section#project .card-background:has(img)::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -402,16 +402,25 @@ nav a.text-blue-500::after {
     transform: translateY(10px);
 }
 
-.card-background:hover:has(img)::before {
+section#project .card-background:hover:has(img)::before {
     opacity: 0.6;
 }
 
-/* Parallax effect on image */
+/* Parallax effect on image - Only for Project Section */
 @media (hover: hover) {
-    .card-background img {
+    section#project .card-background img {
         transform-style: preserve-3d;
         will-change: transform;
     }
+}
+
+/* Default styling for other images (like social icons) */
+.card-background img:not(section#project .card-background img) {
+    transition: transform 0.3s ease;
+}
+
+.card-background:hover img:not(section#project .card-background img) {
+    transform: scale(1.05);
 }
 
 /* Timeline Dot Glow */
