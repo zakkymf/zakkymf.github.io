@@ -337,11 +337,7 @@ button[type="submit"]:active,
 
 /* Navbar with Blur */
 .sticky.top-0 {
-    position: fixed; /* <— WAJIB */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 50;
+    position: fixed;
     background: rgba(15, 14, 23, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -372,14 +368,50 @@ nav a.text-blue-500::after {
 
 /* Project Card Image Enhancement */
 .card-background img {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 12px;
-    filter: brightness(0.9) saturate(1.1);
+    filter: brightness(0.85) saturate(1.1) contrast(1.05);
+    position: relative;
 }
 
 .card-background:hover img {
-    transform: scale(1.08) rotate(1deg);
-    filter: brightness(1) saturate(1.2);
+    transform: scale(1.1) translateY(-8px);
+    filter: brightness(1.05) saturate(1.3) contrast(1.1);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(168, 85, 247, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Image container glow effect */
+.card-background:has(img)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.2),
+        rgba(168, 85, 247, 0.2),
+        rgba(236, 72, 153, 0.2)
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 0;
+    filter: blur(20px);
+    transform: translateY(10px);
+}
+
+.card-background:hover:has(img)::before {
+    opacity: 0.6;
+}
+
+/* Parallax effect on image */
+@media (hover: hover) {
+    .card-background img {
+        transform-style: preserve-3d;
+        will-change: transform;
+    }
 }
 
 /* Timeline Dot Glow */
@@ -525,7 +557,7 @@ textarea:hover {
     }
 }
 
-/* Shimmer Effect for Cards */
+/* Shimmer Effect for Cards - Only on Hover */
 .card-background {
     position: relative;
     overflow: hidden;
@@ -535,7 +567,7 @@ textarea:hover {
     content: "";
     position: absolute;
     top: -50%;
-    left: -50%;
+    left: -150%;
     width: 200%;
     height: 200%;
     background: linear-gradient(
@@ -545,9 +577,15 @@ textarea:hover {
         transparent 70%
     );
     transform: rotate(45deg);
-    animation: shimmer 4s infinite;
     pointer-events: none;
     z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-background:hover::after {
+    opacity: 1;
+    animation: shimmer 0.8s ease-out;
 }
 
 /* Ensure card content is above shimmer */
@@ -558,15 +596,10 @@ textarea:hover {
 
 @keyframes shimmer {
     0% {
-        transform: translateX(-100%) translateY(-100%) rotate(45deg);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
+        left: -150%;
     }
     100% {
-        transform: translateX(100%) translateY(100%) rotate(45deg);
-        opacity: 0;
+        left: 150%;
     }
 }
 
