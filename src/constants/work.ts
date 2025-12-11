@@ -3,7 +3,7 @@ export const works = [
     id: 1,
     company: "Depoguna Bangunan Online",
     role: "Frontend Engineer",
-    period: "Jun 2025 - Dec 2025",
+    period: "Jun 2025 - Nov 2025",
     description: [
       "Maintain and develop DBO Salesman App",
       "Built a scalable frontend architecture boilerplate using React, TypeScript, and Zustand to standardize structure, improve maintainability, and speed up development across projects",
