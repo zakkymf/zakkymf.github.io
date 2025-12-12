@@ -27,7 +27,7 @@ export const works = [
   {
     id: 3,
     company: "SanberCode",
-    role: "Mobile Application Developer",
+    role: "Mentor React Native",
     period: "Jul 2020 - Mar 2021",
     description: [
       "Developed Mobile Application with React Native",
@@ -42,7 +42,7 @@ export const works = [
   {
     id: 4,
     company: "BIA Energi",
-    role: "Mobile Application Developer ",
+    role: "Mobile Developer ",
     period: "Feb 2018 - Jun 2020",
     description: [
       "Developed Mobile Application with React Native",
