@@ -27,7 +27,7 @@ export const works = [
   {
     id: 3,
     company: "SanberCode",
-    role: "Mentor React Native",
+    role: "React Native Instructor",
     period: "Jul 2020 - Mar 2021",
     description: [
       "Developed Mobile Application with React Native",
